@@ -1,0 +1,34 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'book_create' %}">+ New Book</a>
+    <table class="table">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+
+        {% for book in books %}
+        <tr>
+            <td>
+                <img src="{{ book.cover_image.url }}" alt="Image" class="cover-img">
+            </td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.description }}</td>
+            <td>
+                <a href="{{ book.download.url }}" download>Download</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<style>
+    .cover-img{
+        height:100px;
+    }
+</style>
+{% endblock content %}
